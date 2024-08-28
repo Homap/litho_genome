@@ -1,0 +1,20 @@
+# Path to your genome assembly FASTA file
+genome: "../repeat/repeatmasker_output_dir/ps_225_001.polished_assembly.fasta.masked"
+
+# Directory containing RNA-Seq BAM files
+#rna_seq_dir: "data/rna_seq"
+
+# Path to the protein evidence FASTA file
+protein_fasta: "../../data/orthodb/Viridiplantae.fa"
+
+# Output directory for BRAKER results
+output_dir: "../../results/braker"
+
+# Number of cores to use
+cores: 20
+
+# BRAKER3 parameters
+species: "Lithophragma bolanderi"
+
+# BUSCO lineage
+busco_lineage: "embryophyta_odb10"

@@ -1,0 +1,9 @@
+##### cluster.yaml: cluster configuration file for snakemake demo workflow #####
+__default__:
+  account: naiss2024-5-93
+  time: 01:00:00
+  cores: 1
+###
+run_braker3:
+  time: 4-00:00:00
+  cores: 10

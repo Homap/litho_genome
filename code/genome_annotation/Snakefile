@@ -1,0 +1,33 @@
+# Load configuration
+configfile: "config.yaml"
+
+# Define the rule for running BRAKER3 with protein evidence only
+rule all:
+    input:
+        "../../results/braker/braker.gff3"
+        #expand("{output_dir}/braker.gff3", output_dir=config["output_dir"])#,
+        #expand("busco/output/run_busco/short_summary.specific.{busco_lineage}.txt", busco_lineage=config["busco_lineage"]),
+        #"omark/output/omark_results.txt"
+
+rule run_braker3:
+    input:
+        genome=config["genome"],
+        prot_evidence=config["protein_fasta"]
+    output:
+        "../../results/braker/braker.gff3"
+    params:
+        cores=config["cores"]
+    shell:
+        """
+        singularity exec braker3.sif braker.pl \
+            --genome={input.genome} \
+            --prot_seq={input.prot_evidence} \
+            --softmasking \
+            --workingdir=../../results/braker \
+            --busco_lineage=embryophyta_odb10 \
+            --AUGUSTUS_CONFIG_PATH=./augustus_config
+            --threads {params.cores}
+        """
+
+
+
